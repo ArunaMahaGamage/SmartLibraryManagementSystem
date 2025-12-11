@@ -1,0 +1,137 @@
+@startuml
+abstract class com.k2600143.slms.decorator.K2600143_BookDecorator
+annotation java.lang.Override
+class com.k2600143.slms.SmartLibraryManagementSystem
+class com.k2600143.slms.command.K2600143_BorrowCommand
+class com.k2600143.slms.command.K2600143_CancelReservationCommand
+class com.k2600143.slms.command.K2600143_ReserveCommand
+class com.k2600143.slms.command.K2600143_ReturnCommand
+class com.k2600143.slms.decorator.K2600143_FeaturedBook
+class com.k2600143.slms.decorator.K2600143_RecommendedBook
+class com.k2600143.slms.decorator.K2600143_SpecialEditionBook
+class com.k2600143.slms.model.K2600143_Book
+class com.k2600143.slms.model.K2600143_BorrowTransaction
+class com.k2600143.slms.model.K2600143_Librarian
+class com.k2600143.slms.model.K2600143_Reservation
+class com.k2600143.slms.model.K2600143_User
+class com.k2600143.slms.observer.K2600143_Notification
+class com.k2600143.slms.observer.K2600143_NotificationManager
+class com.k2600143.slms.service.K2600143_LibraryService
+class com.k2600143.slms.service.K2600143_ReportService
+class com.k2600143.slms.state.K2600143_AvailableState
+class com.k2600143.slms.state.K2600143_BorrowedState
+class com.k2600143.slms.state.K2600143_ReservedState
+class com.k2600143.slms.strategy.K2600143_FacultyFineStrategy
+class com.k2600143.slms.strategy.K2600143_GuestFineStrategy
+class com.k2600143.slms.strategy.K2600143_StudentFineStrategy
+class java.time.LocalDate
+class java.util.ArrayList
+class java.util.List
+enum com.k2600143.slms.enums.K2600143_MembershipType
+enum com.k2600143.slms.enums.K2600143_NotificationType
+interface com.k2600143.slms.interfaces.K2600143_BookState
+interface com.k2600143.slms.interfaces.K2600143_Command
+interface com.k2600143.slms.interfaces.K2600143_FineStrategy
+interface com.k2600143.slms.interfaces.K2600143_NotificationObserver
+com.k2600143.slms.decorator.K2600143_BookDecorator --|> com.k2600143.slms.model.K2600143_Book
+com.k2600143.slms.SmartLibraryManagementSystem ..> com.k2600143.slms.command.K2600143_BorrowCommand
+com.k2600143.slms.SmartLibraryManagementSystem ..> com.k2600143.slms.command.K2600143_ReserveCommand
+com.k2600143.slms.SmartLibraryManagementSystem ..> com.k2600143.slms.command.K2600143_ReturnCommand
+com.k2600143.slms.SmartLibraryManagementSystem ..> com.k2600143.slms.decorator.K2600143_FeaturedBook
+com.k2600143.slms.SmartLibraryManagementSystem ..> com.k2600143.slms.decorator.K2600143_RecommendedBook
+com.k2600143.slms.SmartLibraryManagementSystem ..> com.k2600143.slms.model.K2600143_Book
+com.k2600143.slms.SmartLibraryManagementSystem ..> com.k2600143.slms.model.K2600143_User
+com.k2600143.slms.SmartLibraryManagementSystem ..> com.k2600143.slms.service.K2600143_LibraryService
+com.k2600143.slms.SmartLibraryManagementSystem ..> com.k2600143.slms.service.K2600143_ReportService
+com.k2600143.slms.SmartLibraryManagementSystem ..> java.util.List
+com.k2600143.slms.SmartLibraryManagementSystem ..> com.k2600143.slms.enums.K2600143_MembershipType
+com.k2600143.slms.SmartLibraryManagementSystem ..> com.k2600143.slms.interfaces.K2600143_Command
+com.k2600143.slms.command.K2600143_BorrowCommand ..> java.lang.Override
+com.k2600143.slms.command.K2600143_BorrowCommand ..> com.k2600143.slms.model.K2600143_Book
+com.k2600143.slms.command.K2600143_BorrowCommand ..> com.k2600143.slms.model.K2600143_User
+com.k2600143.slms.command.K2600143_BorrowCommand ..> com.k2600143.slms.service.K2600143_LibraryService
+com.k2600143.slms.command.K2600143_BorrowCommand --|> com.k2600143.slms.interfaces.K2600143_Command
+com.k2600143.slms.command.K2600143_CancelReservationCommand ..> java.lang.Override
+com.k2600143.slms.command.K2600143_CancelReservationCommand ..> com.k2600143.slms.model.K2600143_Book
+com.k2600143.slms.command.K2600143_CancelReservationCommand ..> com.k2600143.slms.model.K2600143_User
+com.k2600143.slms.command.K2600143_CancelReservationCommand ..> com.k2600143.slms.service.K2600143_LibraryService
+com.k2600143.slms.command.K2600143_CancelReservationCommand --|> com.k2600143.slms.interfaces.K2600143_Command
+com.k2600143.slms.command.K2600143_ReserveCommand ..> java.lang.Override
+com.k2600143.slms.command.K2600143_ReserveCommand ..> com.k2600143.slms.model.K2600143_Book
+com.k2600143.slms.command.K2600143_ReserveCommand ..> com.k2600143.slms.model.K2600143_User
+com.k2600143.slms.command.K2600143_ReserveCommand ..> com.k2600143.slms.service.K2600143_LibraryService
+com.k2600143.slms.command.K2600143_ReserveCommand --|> com.k2600143.slms.interfaces.K2600143_Command
+com.k2600143.slms.command.K2600143_ReturnCommand ..> java.lang.Override
+com.k2600143.slms.command.K2600143_ReturnCommand ..> com.k2600143.slms.model.K2600143_Book
+com.k2600143.slms.command.K2600143_ReturnCommand ..> com.k2600143.slms.model.K2600143_User
+com.k2600143.slms.command.K2600143_ReturnCommand ..> com.k2600143.slms.service.K2600143_LibraryService
+com.k2600143.slms.command.K2600143_ReturnCommand --|> com.k2600143.slms.interfaces.K2600143_Command
+com.k2600143.slms.decorator.K2600143_FeaturedBook --|> com.k2600143.slms.decorator.K2600143_BookDecorator
+com.k2600143.slms.decorator.K2600143_FeaturedBook ..> java.lang.Override
+com.k2600143.slms.decorator.K2600143_FeaturedBook ..> com.k2600143.slms.model.K2600143_Book
+com.k2600143.slms.decorator.K2600143_RecommendedBook --|> com.k2600143.slms.decorator.K2600143_BookDecorator
+com.k2600143.slms.decorator.K2600143_RecommendedBook ..> java.lang.Override
+com.k2600143.slms.decorator.K2600143_RecommendedBook ..> com.k2600143.slms.model.K2600143_Book
+com.k2600143.slms.decorator.K2600143_SpecialEditionBook --|> com.k2600143.slms.decorator.K2600143_BookDecorator
+com.k2600143.slms.decorator.K2600143_SpecialEditionBook ..> java.lang.Override
+com.k2600143.slms.decorator.K2600143_SpecialEditionBook ..> com.k2600143.slms.model.K2600143_Book
+com.k2600143.slms.model.K2600143_Book ..> com.k2600143.slms.service.K2600143_LibraryService
+com.k2600143.slms.model.K2600143_Book ..> com.k2600143.slms.state.K2600143_AvailableState
+com.k2600143.slms.model.K2600143_Book ..> java.util.ArrayList
+com.k2600143.slms.model.K2600143_Book ..> java.util.List
+com.k2600143.slms.model.K2600143_Book ..> com.k2600143.slms.interfaces.K2600143_BookState
+com.k2600143.slms.model.K2600143_BorrowTransaction ..> java.time.LocalDate
+com.k2600143.slms.model.K2600143_Librarian --|> com.k2600143.slms.model.K2600143_User
+com.k2600143.slms.model.K2600143_Librarian ..> com.k2600143.slms.enums.K2600143_MembershipType
+com.k2600143.slms.model.K2600143_Reservation ..> java.time.LocalDate
+com.k2600143.slms.model.K2600143_User ..> java.lang.Override
+com.k2600143.slms.model.K2600143_User ..> com.k2600143.slms.observer.K2600143_Notification
+com.k2600143.slms.model.K2600143_User ..> com.k2600143.slms.strategy.K2600143_FacultyFineStrategy
+com.k2600143.slms.model.K2600143_User ..> com.k2600143.slms.strategy.K2600143_GuestFineStrategy
+com.k2600143.slms.model.K2600143_User ..> com.k2600143.slms.strategy.K2600143_StudentFineStrategy
+com.k2600143.slms.model.K2600143_User ..> java.util.ArrayList
+com.k2600143.slms.model.K2600143_User ..> java.util.List
+com.k2600143.slms.model.K2600143_User ..> com.k2600143.slms.enums.K2600143_MembershipType
+com.k2600143.slms.model.K2600143_User ..> com.k2600143.slms.interfaces.K2600143_FineStrategy
+com.k2600143.slms.model.K2600143_User --|> com.k2600143.slms.interfaces.K2600143_NotificationObserver
+com.k2600143.slms.observer.K2600143_Notification ..> com.k2600143.slms.enums.K2600143_NotificationType
+com.k2600143.slms.observer.K2600143_NotificationManager ..> java.util.ArrayList
+com.k2600143.slms.observer.K2600143_NotificationManager ..> java.util.List
+com.k2600143.slms.observer.K2600143_NotificationManager ..> com.k2600143.slms.interfaces.K2600143_NotificationObserver
+com.k2600143.slms.service.K2600143_LibraryService ..> com.k2600143.slms.model.K2600143_Book
+com.k2600143.slms.service.K2600143_LibraryService ..> com.k2600143.slms.model.K2600143_BorrowTransaction
+com.k2600143.slms.service.K2600143_LibraryService ..> com.k2600143.slms.model.K2600143_Reservation
+com.k2600143.slms.service.K2600143_LibraryService ..> com.k2600143.slms.model.K2600143_User
+com.k2600143.slms.service.K2600143_LibraryService ..> com.k2600143.slms.observer.K2600143_Notification
+com.k2600143.slms.service.K2600143_LibraryService ..> com.k2600143.slms.observer.K2600143_NotificationManager
+com.k2600143.slms.service.K2600143_LibraryService ..> java.time.LocalDate
+com.k2600143.slms.service.K2600143_LibraryService ..> com.k2600143.slms.enums.K2600143_NotificationType
+com.k2600143.slms.service.K2600143_ReportService ..> com.k2600143.slms.model.K2600143_Book
+com.k2600143.slms.service.K2600143_ReportService ..> com.k2600143.slms.model.K2600143_BorrowTransaction
+com.k2600143.slms.service.K2600143_ReportService ..> java.util.List
+com.k2600143.slms.state.K2600143_AvailableState ..> java.lang.Override
+com.k2600143.slms.state.K2600143_AvailableState ..> com.k2600143.slms.model.K2600143_Book
+com.k2600143.slms.state.K2600143_AvailableState ..> com.k2600143.slms.model.K2600143_User
+com.k2600143.slms.state.K2600143_AvailableState ..> com.k2600143.slms.service.K2600143_LibraryService
+com.k2600143.slms.state.K2600143_AvailableState --|> com.k2600143.slms.interfaces.K2600143_BookState
+com.k2600143.slms.state.K2600143_BorrowedState ..> java.lang.Override
+com.k2600143.slms.state.K2600143_BorrowedState ..> com.k2600143.slms.model.K2600143_Book
+com.k2600143.slms.state.K2600143_BorrowedState ..> com.k2600143.slms.model.K2600143_User
+com.k2600143.slms.state.K2600143_BorrowedState ..> com.k2600143.slms.service.K2600143_LibraryService
+com.k2600143.slms.state.K2600143_BorrowedState --|> com.k2600143.slms.interfaces.K2600143_BookState
+com.k2600143.slms.state.K2600143_ReservedState ..> java.lang.Override
+com.k2600143.slms.state.K2600143_ReservedState ..> com.k2600143.slms.model.K2600143_Book
+com.k2600143.slms.state.K2600143_ReservedState ..> com.k2600143.slms.model.K2600143_User
+com.k2600143.slms.state.K2600143_ReservedState ..> com.k2600143.slms.service.K2600143_LibraryService
+com.k2600143.slms.state.K2600143_ReservedState --|> com.k2600143.slms.interfaces.K2600143_BookState
+com.k2600143.slms.strategy.K2600143_FacultyFineStrategy ..> java.lang.Override
+com.k2600143.slms.strategy.K2600143_FacultyFineStrategy --|> com.k2600143.slms.interfaces.K2600143_FineStrategy
+com.k2600143.slms.strategy.K2600143_GuestFineStrategy ..> java.lang.Override
+com.k2600143.slms.strategy.K2600143_GuestFineStrategy --|> com.k2600143.slms.interfaces.K2600143_FineStrategy
+com.k2600143.slms.strategy.K2600143_StudentFineStrategy ..> java.lang.Override
+com.k2600143.slms.strategy.K2600143_StudentFineStrategy --|> com.k2600143.slms.interfaces.K2600143_FineStrategy
+com.k2600143.slms.interfaces.K2600143_BookState ..> com.k2600143.slms.model.K2600143_Book
+com.k2600143.slms.interfaces.K2600143_BookState ..> com.k2600143.slms.model.K2600143_User
+com.k2600143.slms.interfaces.K2600143_BookState ..> com.k2600143.slms.service.K2600143_LibraryService
+com.k2600143.slms.interfaces.K2600143_NotificationObserver ..> com.k2600143.slms.observer.K2600143_Notification
+@enduml

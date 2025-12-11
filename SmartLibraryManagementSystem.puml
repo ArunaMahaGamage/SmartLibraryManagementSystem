@@ -1,0 +1,174 @@
+@startuml
+title Smart Library Management System (K2600143)
+
+package "model" {
+  class K2600143_Book {
+    - bookId : String
+    - title : String
+    - author : String
+    - category : String
+    - isbn : String
+    - state : K2600143_BookState
+    - borrowedHistory : List<K2600143_BorrowTransaction>
+    + borrow(user, service)
+    + returnBook(user, service)
+    + reserve(user, service)
+    + availabilityStatus() : String
+  }
+
+  class K2600143_User {
+    - userId : String
+    - name : String
+    - email : String
+    - contactNumber : String
+    - membershipType : K2600143_MembershipType
+    - borrowedHistory : List<K2600143_BorrowTransaction>
+    - fineStrategy : K2600143_FineStrategy
+    + onNotify(notification)
+  }
+
+  class K2600143_Librarian {
+    + addBook(book)
+    + updateBook(book)
+    + removeBook(bookId)
+    + generateReports()
+  }
+
+  class K2600143_BorrowTransaction {
+    - transactionId : String
+    - user : K2600143_User
+    - book : K2600143_Book
+    - borrowDate : Date
+    - dueDate : Date
+    - returnDate : Date
+    - fine : double
+  }
+
+  class K2600143_Reservation {
+    - reservationId : String
+    - user : K2600143_User
+    - book : K2600143_Book
+    - reservationDate : Date
+  }
+
+  class K2600143_Notification {
+    - id : String
+    - type : K2600143_NotificationType
+    - message : String
+  }
+}
+
+package "state" {
+  interface K2600143_BookState {
+    + handleBorrow(book, user, service)
+    + handleReturn(book, user, service)
+    + handleReserve(book, user, service)
+    + getName() : String
+  }
+
+  class K2600143_AvailableState
+  class K2600143_BorrowedState
+  class K2600143_ReservedState
+}
+
+package "strategy" {
+  interface K2600143_FineStrategy {
+    + calculateFine(daysLate : int) : double
+    + borrowingLimit() : int
+    + borrowingDays() : int
+  }
+
+  class K2600143_StudentFineStrategy
+  class K2600143_FacultyFineStrategy
+  class K2600143_GuestFineStrategy
+}
+
+package "command" {
+  interface K2600143_Command {
+    + execute()
+    + undo()
+  }
+
+  class K2600143_BorrowCommand
+  class K2600143_ReturnCommand
+  class K2600143_ReserveCommand
+  class K2600143_CancelReservationCommand
+}
+
+package "decorator" {
+  abstract class K2600143_BookDecorator {
+    + getDescription() : String
+  }
+
+  class K2600143_FeaturedBook
+  class K2600143_RecommendedBook
+  class K2600143_SpecialEditionBook
+}
+
+package "observer" {
+  interface K2600143_NotificationObserver {
+    + onNotify(notification)
+  }
+
+  class K2600143_NotificationManager {
+    - observers : List<K2600143_NotificationObserver>
+    + attach(observer)
+    + detach(observer)
+    + notifyAllObservers(notification)
+  }
+}
+
+package "service" {
+  class K2600143_LibraryService {
+    - books : Map<String, K2600143_Book>
+    - users : Map<String, K2600143_User>
+    - reservations : Map<String, Deque<K2600143_Reservation>>
+    - transactions : List<K2600143_BorrowTransaction>
+    + addBook(book)
+    + removeBook(bookId)
+    + addUser(user)
+    + processBorrow(book, user)
+    + processReturn(book, user)
+    + processReserve(book, user)
+    + cancelReservation(book, user)
+    + mostBorrowedBooks(topN) : List<K2600143_Book>
+    + activeBorrowers(topN) : List<K2600143_User>
+    + overdueTransactions() : List<K2600143_BorrowTransaction>
+  }
+
+  class K2600143_ReportService {
+    + printMostBorrowed(topN)
+    + printOverdue()
+  }
+}
+
+package "app" {
+  class K2600143_Main
+}
+
+' Relationships
+K2600143_User "1" -- "0..*" K2600143_BorrowTransaction
+K2600143_Book "1" -- "0..*" K2600143_BorrowTransaction
+K2600143_User "1" -- "0..*" K2600143_Reservation
+K2600143_Book "1" -- "0..*" K2600143_Reservation
+K2600143_NotificationManager "1" -- "0..*" K2600143_User : observers
+K2600143_Book --> K2600143_BookState
+K2600143_User --> K2600143_FineStrategy
+K2600143_BookDecorator --> K2600143_Book
+K2600143_FeaturedBook --> K2600143_BookDecorator
+K2600143_RecommendedBook --> K2600143_BookDecorator
+K2600143_SpecialEditionBook --> K2600143_BookDecorator
+K2600143_AvailableState ..|> K2600143_BookState
+K2600143_BorrowedState ..|> K2600143_BookState
+K2600143_ReservedState ..|> K2600143_BookState
+K2600143_StudentFineStrategy ..|> K2600143_FineStrategy
+K2600143_FacultyFineStrategy ..|> K2600143_FineStrategy
+K2600143_GuestFineStrategy ..|> K2600143_FineStrategy
+K2600143_BorrowCommand ..|> K2600143_Command
+K2600143_ReturnCommand ..|> K2600143_Command
+K2600143_ReserveCommand ..|> K2600143_Command
+K2600143_CancelReservationCommand ..|> K2600143_Command
+K2600143_User ..|> K2600143_NotificationObserver
+K2600143_Librarian ..|> K2600143_User
+
+@enduml
