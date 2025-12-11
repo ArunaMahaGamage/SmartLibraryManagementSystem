@@ -4,8 +4,6 @@
  */
 package com.k2600143.slms.strategy;
 
-import com.k2600143.slms.interfaces.K2600143_FineStrategy;
-
 /**
  *
  * @author arunagamage

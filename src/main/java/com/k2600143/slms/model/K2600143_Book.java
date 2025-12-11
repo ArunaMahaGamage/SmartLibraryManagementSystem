@@ -9,7 +9,7 @@ package com.k2600143.slms.model;
  * @author arunagamage
  */
 // K2600143_Book.java
-import com.k2600143.slms.interfaces.K2600143_BookState;
+import com.k2600143.slms.state.K2600143_BookState;
 import com.k2600143.slms.service.K2600143_LibraryService;
 import com.k2600143.slms.state.K2600143_AvailableState;
 import java.util.ArrayList;

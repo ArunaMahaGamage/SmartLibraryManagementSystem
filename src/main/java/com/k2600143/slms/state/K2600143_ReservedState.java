@@ -4,7 +4,6 @@
  */
 package com.k2600143.slms.state;
 
-import com.k2600143.slms.interfaces.K2600143_BookState;
 import com.k2600143.slms.model.K2600143_Book;
 import com.k2600143.slms.model.K2600143_User;
 import com.k2600143.slms.service.K2600143_LibraryService;

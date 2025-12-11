@@ -10,7 +10,7 @@ import com.k2600143.slms.command.K2600143_ReturnCommand;
 import com.k2600143.slms.decorator.K2600143_FeaturedBook;
 import com.k2600143.slms.decorator.K2600143_RecommendedBook;
 import com.k2600143.slms.enums.K2600143_MembershipType;
-import com.k2600143.slms.interfaces.K2600143_Command;
+import com.k2600143.slms.command.K2600143_Command;
 import com.k2600143.slms.model.K2600143_Book;
 import com.k2600143.slms.model.K2600143_User;
 import com.k2600143.slms.service.K2600143_LibraryService;

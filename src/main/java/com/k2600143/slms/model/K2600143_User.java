@@ -10,8 +10,8 @@ package com.k2600143.slms.model;
  */
 // K2600143_User.java
 import com.k2600143.slms.enums.K2600143_MembershipType;
-import com.k2600143.slms.interfaces.K2600143_FineStrategy;
-import com.k2600143.slms.interfaces.K2600143_NotificationObserver;
+import com.k2600143.slms.strategy.K2600143_FineStrategy;
+import com.k2600143.slms.observer.K2600143_NotificationObserver;
 import com.k2600143.slms.observer.K2600143_Notification;
 import com.k2600143.slms.strategy.K2600143_FacultyFineStrategy;
 import com.k2600143.slms.strategy.K2600143_GuestFineStrategy;

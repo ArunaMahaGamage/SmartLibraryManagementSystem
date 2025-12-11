@@ -8,7 +8,6 @@ package com.k2600143.slms.observer;
  *
  * @author arunagamage
  */
-import com.k2600143.slms.interfaces.K2600143_NotificationObserver;
 import java.util.ArrayList;
 import java.util.List;
 
